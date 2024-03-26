@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: counterapp
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - NTFY_SERVER=http://ntfy-server:5001  # Modify this with your actual server URL
