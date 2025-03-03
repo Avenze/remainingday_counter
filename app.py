@@ -7,7 +7,7 @@ import requests
 from dotenv import load_dotenv
 
 load_dotenv()
-SKIP_DATES = ["2025-04-07", "2025-04-08", "2025-04-09", "2025-04-10", "2025-04-11", "2025-04-14", "2025-04-15", "2025-04-16", "2025-04-17", "2025-04-18", "2025-04-21", "2025-05-01", "2025-05-02", "2025-05-29", "2025-05-30", "2025-06-05", "2025-06-06"]  # Add your skippable dates here
+SKIP_DATES = os.getenv("SKIP_DATES")
 NTFY_SERVER = os.getenv("NTFY_SERVER")
 NTFY_TOPIC = os.getenv("NTFY_TOPIC")
 
