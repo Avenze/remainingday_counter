@@ -71,7 +71,7 @@ def count_working_days(start_date, end_date):
 
 def main():
     start_date = datetime.datetime.now()
-    end_date = datetime.datetime(2024, 6, 11)
+    end_date = datetime.datetime(2025, 6, 12)
     working_days = count_working_days(start_date, end_date)
     
     print("Number of working days between", start_date.strftime("%Y-%m-%d"), "and", end_date.strftime("%Y-%m-%d"), ":", working_days-1)
