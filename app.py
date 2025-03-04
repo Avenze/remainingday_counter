@@ -45,6 +45,30 @@ def send_notification(days):
     else:
         print("ERR: NTFY_SERVER variable is not set in the .env file")
 
+
+def run_function(days):
+    current_datetime = datetime.datetime.now()
+    current_time = current_datetime.time()
+    today_date = current_datetime.date()
+
+    # Check if it's between 08:00 and 08:30 and it hasn't been run today (fuck codespaces running in UTC/CET-1)
+    if datetime.time(12, 0) <= current_time <= datetime.time(14, 30):
+
+        # Read the last run date from memory
+        if LAST_RUNTIME == "":
+            print("INF: Sending notification due to container startup at: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"))
+            send_notification(days)
+        else:
+            last_rundate = datetime.datetime.strptime(LAST_RUNTIME, "%Y-%m-%d").date()
+            if last_run_date != today_date:
+                print("INF: Sending notification due to new day: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"))
+                send_notification(days)
+
+        # Update the last run date in the file to today's date
+        LAST_RUNETIME = today_date.strftime("%Y-%m-%d"))
+
+    return True
+
 def main():
     start_date = datetime.datetime.now()
     end_date = datetime.datetime(2025, 6, 12)
