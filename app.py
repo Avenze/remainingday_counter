@@ -82,7 +82,7 @@ def run_function(days):
             send_notification(days)
         else:
             last_rundate = datetime.datetime.strptime(last_runtime, "%Y-%m-%d").date()
-            if last_run_date != today_date:
+            if last_rundate != today_date:
                 print("INF: Sending notification due to new day: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"))
                 send_notification(days)
 
