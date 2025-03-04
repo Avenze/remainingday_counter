@@ -29,6 +29,22 @@ def count_working_days(start_date, end_date):
         current_date += datetime.timedelta(days=1)
     return count
 
+def send_notification(days):
+    if NTFY_SERVER:
+
+        STRING = "Endast " + days + " dagar kvar tills sommarlov!"
+        requests.post("https:// " + NTFY_SERVER + "/" + NTFY_TOPIC,
+            data="Snart slipper vi skolan i 10 veckor.",
+            headers={ "Title": STRING, "Tags": "tada,sommarlov" })
+
+        if response.status_code == 200:
+            print("SUC: Notification successfully sent to", NTFY_SERVER)
+        else:
+            print("ERR: NTFY_SERVER errored, using server: ", NTFY_SERVER)
+        
+    else:
+        print("ERR: NTFY_SERVER variable is not set in the .env file")
+
 def main():
     start_date = datetime.datetime.now()
     end_date = datetime.datetime(2025, 6, 12)
