@@ -83,9 +83,8 @@ def run_function(days):
             print("INF: Sending notification due to container startup at: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"), flush=True)
             send_notification(days)
         else:
-            last_rundate = datetime.datetime.strptime(last_runtime, "%Y-%m-%d").date()
-            if last_rundate != today_date:
-                print("INF: Sending notification due to new day: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"), flush=True)
+            if last_runtime != today_date:
+                print("INF: Sending notification due to new day: ", today_date, flush=True)
                 send_notification(days)
 
     set_lastruntime()
