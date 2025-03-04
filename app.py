@@ -53,7 +53,7 @@ def send_notification(days):
     if NTFY_SERVER:
 
         STRING = "Endast " + str(days) + " dagar kvar tills sommarlov!"
-        requests.post(NTFY_SERVER + "/" + NTFY_TOPIC,
+        response = requests.post(NTFY_SERVER + "/" + NTFY_TOPIC,
             data="Snart slipper vi skolan i 10 veckor.",
             headers={ "Title": STRING, "Tags": "tada,sommarlov" })
 
