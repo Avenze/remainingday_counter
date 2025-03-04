@@ -35,6 +35,7 @@ def set_lastruntime():
     current_datetime = datetime.datetime.now()
     today_date = current_datetime.date()
     last_runtime = today_date.strftime("%Y-%m-%d")
+    print("INF: Setting last runtime to: ", last_runtime)
 
 # Function to count the remaining days from the start and end date
 # @param start_date: The date which you want to start counting from
