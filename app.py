@@ -32,6 +32,7 @@ def is_skippable_date(date):
     return date.strftime("%Y-%m-%d") in SKIP_DATES
 
 def set_lastruntime():
+    current_datetime = datetime.datetime.now()
     today_date = current_datetime.date()
     last_runtime = today_date.strftime("%Y-%m-%d")
 
