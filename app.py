@@ -5,12 +5,12 @@ import os
 import requests
 
 from dotenv import load_dotenv
-
 load_dotenv()
-SKIP_DATES = os.getenv("SKIP_DATES")
-NTFY_SERVER = os.getenv("NTFY_SERVER")
-NTFY_TOPIC = os.getenv("NTFY_TOPIC")
-LAST_RUNTIME = "2025-03-03"
+
+global SKIP_DATES = os.getenv("SKIP_DATES")
+global NTFY_SERVER = os.getenv("NTFY_SERVER")
+global NTFY_TOPIC = os.getenv("NTFY_TOPIC")
+global LAST_RUNTIME = "2025-03-03"
 
 def is_weekend(date):
     # Returns True if the given date falls on a weekend (Saturday or Sunday)
