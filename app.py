@@ -34,7 +34,7 @@ def is_skippable_date(date):
 def set_lastruntime():
     current_datetime = datetime.datetime.now()
     today_date = current_datetime.date()
-    last_runtime = today_date.strftime("%Y-%m-%d")
+    last_runtime = str(today_date.strftime("%Y-%m-%d"))
     print("INF: Setting last runtime to: ", last_runtime, flush=True)
 
 # Function to count the remaining days from the start and end date
@@ -83,6 +83,8 @@ def run_function(days):
             print("INF: Sending notification due to container startup at: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"), flush=True)
             send_notification(days)
         else:
+            print("INF: Current datestring: " + str(today_date))
+            print("INF: Last runtime string: " + str(last_runtime))
             if str(last_runtime) != str(today_date):
                 print("INF: Sending notification due to new day: ", today_date, flush=True)
                 send_notification(days)
