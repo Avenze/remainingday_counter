@@ -12,12 +12,12 @@ load_dotenv()
 global SKIP_DATES
 global NTFY_SERVER
 global NTFY_TOPIC
-global LAST_RUNTIME
+global last_runtime
 
 SKIP_DATES = os.getenv("SKIP_DATES")
 NTFY_SERVER = os.getenv("NTFY_SERVER")
 NTFY_TOPIC = os.getenv("NTFY_TOPIC")
-LAST_RUNTIME = "2025-03-03"
+last_runtime = "2025-03-03"
 
 # Function to check if the date passed is a weekend
 # @param date: The date which you want to check
@@ -30,6 +30,10 @@ def is_weekend(date):
 def is_skippable_date(date):
     # Returns True if the given date should be skipped based on the settings
     return date.strftime("%Y-%m-%d") in SKIP_DATES
+
+def set_lastruntime():
+    today_date = current_datetime.date()
+    last_runtime = today_date.strftime("%Y-%m-%d")
 
 # Function to count the remaining days from the start and end date
 # @param start_date: The date which you want to start counting from
@@ -73,18 +77,16 @@ def run_function(days):
     if datetime.time(12, 0) <= current_time <= datetime.time(14, 30):
 
         # Read the last run date from memory
-        if LAST_RUNTIME == "":
+        if last_runtime == "":
             print("INF: Sending notification due to container startup at: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"))
             send_notification(days)
         else:
-            last_rundate = datetime.datetime.strptime(LAST_RUNTIME, "%Y-%m-%d").date()
+            last_rundate = datetime.datetime.strptime(last_runtime, "%Y-%m-%d").date()
             if last_run_date != today_date:
                 print("INF: Sending notification due to new day: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"))
                 send_notification(days)
 
-        # Update the last run date in the file to today's date
-        LAST_RUNTIME = today_date.strftime("%Y-%m-%d")
-
+    set_lastruntime()
     return True
 
 # The main Python thread/function, invoked using the 30 sec loop below.
