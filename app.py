@@ -65,7 +65,7 @@ def run_function(days):
                 send_notification(days)
 
         # Update the last run date in the file to today's date
-        LAST_RUNETIME = today_date.strftime("%Y-%m-%d"))
+        LAST_RUNTIME = today_date.strftime("%Y-%m-%d")
 
     return True
 
