@@ -1,5 +1,6 @@
-# skolschema_counter
-A simple Node.js app utilizing ntfy.sh for counting down until a calendar school year finishes.
+# remainingday_counter
+A simple Python app utilizing ntfy.sh for counting down until a defined date finishes.
+Stupid project I made in school for counting down until our year finishes.
 
 # Running using Docker Compose
 1. Add this docker-compose.yml
