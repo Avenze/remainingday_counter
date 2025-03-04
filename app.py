@@ -35,7 +35,7 @@ def set_lastruntime():
     current_datetime = datetime.datetime.now()
     today_date = current_datetime.date()
     last_runtime = today_date.strftime("%Y-%m-%d")
-    print("INF: Setting last runtime to: ", last_runtime)
+    print("INF: Setting last runtime to: ", last_runtime, flush=True)
 
 # Function to count the remaining days from the start and end date
 # @param start_date: The date which you want to start counting from
@@ -60,12 +60,12 @@ def send_notification(days):
             headers={ "Title": STRING, "Tags": "tada,sommarlov" })
 
         if response.status_code == 200:
-            print("SUC: Notification successfully sent to", NTFY_SERVER)
+            print("SUC: Notification successfully sent to", NTFY_SERVER, flush=True)
         else:
-            print("ERR: NTFY_SERVER errored, using server: ", NTFY_SERVER)
+            print("ERR: NTFY_SERVER errored, using server: ", NTFY_SERVER, flush=True)
         
     else:
-        print("ERR: NTFY_SERVER variable is not set in the .env file")
+        print("ERR: NTFY_SERVER variable is not set in the .env file", flush=True)
 
 
 # The main run function, separated from the def main.
@@ -80,12 +80,12 @@ def run_function(days):
 
         # Read the last run date from memory
         if last_runtime == "":
-            print("INF: Sending notification due to container startup at: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"))
+            print("INF: Sending notification due to container startup at: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"), flush=True)
             send_notification(days)
         else:
             last_rundate = datetime.datetime.strptime(last_runtime, "%Y-%m-%d").date()
             if last_rundate != today_date:
-                print("INF: Sending notification due to new day: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"))
+                print("INF: Sending notification due to new day: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"), flush=True)
                 send_notification(days)
 
     set_lastruntime()
@@ -97,13 +97,14 @@ def main():
     end_date = datetime.datetime(2025, 6, 12)
     working_days = count_working_days(start_date, end_date)
     
-    print("INF: Number of working days between", start_date.strftime("%Y-%m-%d"), "and", end_date.strftime("%Y-%m-%d"), ":", working_days-1)
+    print("INF: Number of working days between", start_date.strftime("%Y-%m-%d"), "and", end_date.strftime("%Y-%m-%d"), ":", working_days-1, flush=True)
     run_function(working_days)
 
 # Handling scheduler tasks, creating the scheduled task and invoking the scheduled function invokes.
 schedule.every(30).seconds.do(main)
 
 if __name__ == "__main__":
+    print("INF: Starting the main scheduler loop...", flush=True)
     while True:
         schedule.run_pending()
         time.sleep(30)
