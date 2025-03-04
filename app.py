@@ -10,6 +10,7 @@ load_dotenv()
 SKIP_DATES = os.getenv("SKIP_DATES")
 NTFY_SERVER = os.getenv("NTFY_SERVER")
 NTFY_TOPIC = os.getenv("NTFY_TOPIC")
+LAST_RUNTIME = ""
 
 def is_weekend(date):
     # Returns True if the given date falls on a weekend (Saturday or Sunday)
