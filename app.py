@@ -92,6 +92,9 @@ def run_function(days):
             else:
                 print("INF: Already sent notification for today", flush=True)
 
+    else:
+        print("INF: No time :(")
+
     set_lastruntime()
     return True
 
