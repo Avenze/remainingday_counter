@@ -77,7 +77,7 @@ def run_function(days):
     today_date = current_datetime.date()
 
     # Check if it's between 08:00 and 08:30 and it hasn't been run today (fuck codespaces running in UTC/CET-1)
-    if datetime.time(8, 0) <= current_time <= datetime.time(14, 30):
+    if datetime.time(8, 0) <= current_time <= datetime.time(8, 30):
 
         # Read the last run date from memory
         if last_runtime == "":
