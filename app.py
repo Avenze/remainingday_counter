@@ -84,11 +84,13 @@ def run_function(days):
             print("INF: Sending notification due to container startup at: ", current_datetime.strftime("%Y-%m-%d %H:%M:%S"), flush=True)
             send_notification(days)
         else:
-            print("INF: Current datestring: " + str(today_date))
-            print("INF: Last runtime string: " + str(last_runtime))
+            print("INF: Current datestring: " + str(today_date), flush=True)
+            print("INF: Last runtime string: " + str(last_runtime), flush=True)
             if str(last_runtime) != str(today_date):
                 print("INF: Sending notification due to new day: ", today_date, flush=True)
                 send_notification(days)
+            else:
+                print("INF: Already sent notification for today", flush=True)
 
     set_lastruntime()
     return True
